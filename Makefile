@@ -25,12 +25,12 @@ bench:
 	@go test -bench=. ${PKG_LIST}
 
 # Build the project
-build:
+build: test
 	@echo '*** Building' $(PKG)
 	@go build -a -ldflags '-extldflags "-static"' -i -v $(PKG_PATH)
 
 # Build the Docker image
-docker:
+docker: build
 	@echo '*** Building the Docker image' $(PKG)
 	@docker build -t $(PKG):latest $(PKG_PATH)
 
