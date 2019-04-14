@@ -46,7 +46,6 @@ func errorMiddleware(errType gin.ErrorType) gin.HandlerFunc {
 				for _, fieldError := range typedError {
 					log.Warn().Err(typedError).Msg("Invalid parameters")
 
-					apiError.Status = http.StatusBadRequest
 					apiError.Messages = append(apiError.Messages, fmt.Sprintf("Invalid value for parameter '%s'", fieldError.Name))
 				}
 
